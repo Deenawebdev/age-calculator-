@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>AGE CACI</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h2>AGE CALCI</h2>
+        <div class="inputdiv">
+            <input type="date" id="dob" placeholder="ENTER YOUR DATE OF BIRTH">
+        </div>
+        <div>
+            <button type="submit" onclick="calculateAge()">Calculate</button>
+        </div>
+        <div id="result"></div>
+        <footer>&copy 2024. All Rights Reserved By Deena_ofcl</footer>
+    </div>
+
+    <!--  script source -->
+    <script>
+      function calculateAge() {
+        const dob = new Date(document.getElementById("dob").value);
+        const today = new Date();
+        
+        let age = today.getFullYear() - dob.getFullYear();
+        const monthDiff = today.getMonth() - dob.getMonth();
+
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+            age--;
+        }
+
+        let category = "";
+
+        if (age <= 1) {
+            category = "infant";
+        } else if (age >= 2 && age <= 3) {
+            category = "toddler";
+        } else if (age >= 4 && age <= 5) {
+            category = "preschooler";
+        } else if (age >= 6 && age <= 12) {
+            category = "child";
+        } else if (age >= 13 && age <= 17) {
+            category = "teenager";
+        } else if (age === 18) {
+            category = "young adult";
+        } else if (age >= 19 && age <= 40) {
+            category = "adult";
+        } else if (age >= 41 && age <= 59) {
+            category = "middle-aged adult";
+        } else if (age >= 60 && age <= 79) {
+            category = "senior adult";
+        } else {
+            category = "elder";
+        }
+
+        let result = document.querySelector('#result');
+        result.innerHTML = "Your age is " + age + " and you are a " + category;
+      }
+    </script>
+</body>
+</html>
